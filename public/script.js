@@ -22,10 +22,22 @@ sendButton.addEventListener("click", async () => {
 });
 
 function appendMessage(sender, message) {
+    const messageContainer = document.createElement("div"); // Create a container div
+
+    if (sender === "user") {
+        messageContainer.className = "user-message"; // Apply a class for user messages
+    } else {
+        messageContainer.className = "assistant-message"; // Apply a class for assistant messages
+    }
+
     const messageDiv = document.createElement("div");
-    messageDiv.className = sender;
     messageDiv.textContent = message;
-    chatDiv.appendChild(messageDiv);
+    messageContainer.appendChild(messageDiv);
+
+    const separator = document.createElement("hr"); // Create a horizontal rule
+    messageContainer.appendChild(separator); // Append the separator
+
+    chatDiv.appendChild(messageContainer);
 }
 
 async function getChatbotResponse(message, history) {
@@ -37,7 +49,7 @@ async function getChatbotResponse(message, history) {
         text: message,
         chatbot_global_action: "Act as an assistant",
         previous_history: history, // Pass the entire conversation history
-        temperature: 0.0,
+        temperature: 1.0,
         max_tokens: 150,
     };
 
