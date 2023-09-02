@@ -12,27 +12,33 @@
             margin-top: 20px;
         }
 
-        .message-card {
-            border: 1px solid #ccc;
+        .user-message {
+            background-color: #e0e0e0;
+            margin: 10px;
             padding: 10px;
-            margin-bottom: 10px;
             border-radius: 5px;
+            clear: both;
+            float: left;
+            max-width: 70%;
         }
 
-        /* Additional styles for the table */
-        .response-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 10px;
-        }
-
-        .response-row {
-            border: 1px solid #ccc;
-        }
-
-        .response-cell {
+        .assistant-message {
+            background-color: #4caf50;
+            color: white;
+            margin: 10px;
             padding: 10px;
-            vertical-align: top;
+            border-radius: 5px;
+            clear: both;
+            float: right;
+            max-width: 70%;
+        }
+
+        /* Style for the separator */
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #ccc; /* Color of the separator line */
+            margin: 5px 0; /* Adjust the margin to control the spacing */
         }
     </style>
 </head>
@@ -40,13 +46,12 @@
     <h1 class="text-center">Nkanyezi By Skywalkingzulu</h1>
     <div class="container">
         <div id="chat" class="col-md-6 offset-md-3">
-            <!-- The tables for responses will be dynamically generated here -->
+            <!-- The chat messages and separators will be dynamically generated here -->
         </div>
         <input type="text" id="userInput" class="form-control" placeholder="Type your message...">
         <button id="sendButton" class="btn btn-primary">Send</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-     <script src="script.js"></script>
- 
+    <script src="script.js"></script>
 </body>
 </html>
