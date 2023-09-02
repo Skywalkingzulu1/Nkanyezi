@@ -1,23 +1,34 @@
 const chatDiv = document.getElementById("chat");
 const userInput = document.getElementById("userInput");
 const sendButton = document.getElementById("sendButton");
+let conversationHistory = []; // Initialize conversation history
 
 sendButton.addEventListener("click", async () => {
     const userMessage = userInput.value;
     if (userMessage.trim() !== "") {
-        appendMessage("user", userMessage);
+        // Append user message to the conversation history with "role" set to "user"
+        conversationHistory.push({ role: "user", message: userMessage });
         userInput.value = "";
 
-        try {
-            const chatbotResponse = await getChatbotResponse(userMessage);
-            appendMessage("chatbot", chatbotResponse);
-        } catch (error) {
-            console.error(error);
-        }
+        // Call the chatbot API with the current conversation history
+        const chatbotResponse = await getChatbotResponse(userMessage, conversationHistory);
+
+        // Append chatbot response to the conversation history with "role" set to "assistant"
+        conversationHistory.push({ role: "assistant", message: chatbotResponse });
+
+        // Update the UI to display the conversation
+        updateUI();
     }
 });
 
-async function getChatbotResponse(message) {
+function appendMessage(sender, message) {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = sender;
+    messageDiv.textContent = message;
+    chatDiv.appendChild(messageDiv);
+}
+
+async function getChatbotResponse(message, history) {
     const apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODBiYTM3NzUtY2UxYi00NTI3LWIwMjktNWQxOTIyZmEyYTg5IiwidHlwZSI6ImFwaV90b2tlbiJ9.8nm8aXSAu_BLqfaf62tezxT8tNlG0NDHpTeAyXzKIXw"; // Replace with your actual API key
     const apiUrl = "https://api.edenai.run/v2/text/chat";
 
@@ -25,7 +36,7 @@ async function getChatbotResponse(message) {
         providers: "openai",
         text: message,
         chatbot_global_action: "Act as an assistant",
-        previous_history: [],
+        previous_history: history, // Pass the entire conversation history
         temperature: 0.0,
         max_tokens: 150,
     };
@@ -37,22 +48,15 @@ async function getChatbotResponse(message) {
             },
         });
 
-        console.log("API Response:", response.data);
+        const responseData = response.data;
 
-        const messages = response.data.openai.message;
-        let chatbotResponse = "";
+        console.log(responseData); // For debugging
 
-        for (const message of messages) {
-            if (message.role === "assistant") {
-                chatbotResponse = message.message;
-                break;
-            }
-        }
-
-        if (chatbotResponse) {
-            return chatbotResponse;
+        // Check if the response has content under "openai.generated_text"
+        if (responseData && responseData.openai && responseData.openai.generated_text) {
+            return responseData.openai.generated_text;
         } else {
-            throw new Error("Assistant message not found in API response");
+            throw new Error("Invalid response from the chatbot API");
         }
     } catch (error) {
         console.error(error);
@@ -60,9 +64,10 @@ async function getChatbotResponse(message) {
     }
 }
 
-function appendMessage(sender, message) {
-    const messageDiv = document.createElement("div");
-    messageDiv.className = sender;
-    messageDiv.textContent = message;
-    chatDiv.appendChild(messageDiv);
+function updateUI() {
+    chatDiv.innerHTML = ""; // Clear the chat
+
+    conversationHistory.forEach(({ role, message }) => {
+        appendMessage(role, message);
+    });
 }
