@@ -73,59 +73,81 @@
     </div>
 
     <script>
-        // Initialize Netlify Identity
-        const netlifyIdentity = window.netlifyIdentity;
+    // Initialize Netlify Identity
+const netlifyIdentity = window.netlifyIdentity;
 
-        netlifyIdentity.init();
+netlifyIdentity.init();
 
-        // Login form
-        const loginForm = document.getElementById("loginForm");
-        const loginEmail = document.getElementById("loginEmail");
-        const loginPassword = document.getElementById("loginPassword");
+// Login form
+const loginForm = document.getElementById("loginForm");
+const loginEmail = document.getElementById("loginEmail");
+const loginPassword = document.getElementById("loginPassword");
 
-        // Sign up form
-        const signupForm = document.getElementById("signupForm");
-        const signupEmail = document.getElementById("signupEmail");
-        const signupPassword = document.getElementById("signupPassword");
+// Sign-up form
+const signupForm = document.getElementById("signupForm");
+const signupEmail = document.getElementById("signupEmail");
+const signupPassword = document.getElementById("signupPassword");
 
-        // Buttons to toggle forms
-        const loginButton = document.getElementById("loginButton");
-        const signupButton = document.getElementById("signupButton");
+// Buttons to toggle forms
+const loginButton = document.getElementById("loginButton");
+const signupButton = document.getElementById("signupButton");
 
-        // Toggle to the login form by default
-        loginForm.style.display = "block";
-        signupForm.style.display = "none";
+// Toggle to the login form by default
+loginForm.style.display = "block";
+signupForm.style.display = "none";
 
-        // Event listeners for toggling between login and signup forms
-        loginButton.addEventListener("click", () => {
-            loginForm.style.display = "block";
-            signupForm.style.display = "none";
-        });
+// Event listeners for toggling between login and signup forms
+loginButton.addEventListener("click", () => {
+    loginForm.style.display = "block";
+    signupForm.style.display = "none";
+});
 
-        signupButton.addEventListener("click", () => {
-            loginForm.style.display = "none";
-            signupForm.style.display = "block";
-        });
+signupButton.addEventListener("click", () => {
+    loginForm.style.display = "none";
+    signupForm.style.display = "block";
+});
 
-        // Login form submission
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const email = loginEmail.value;
-            const password = loginPassword.value;
+// Login form submission
+loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = loginEmail.value;
+    const password = loginPassword.value;
 
-            // Perform login logic here using Netlify Identity
-            // You can use netlifyIdentity.login({ email, password }) to log in the user
-        });
+    try {
+        // Perform login logic here using Netlify Identity
+        const user = await netlifyIdentity.login({ email, password });
+        console.log('User logged in:', user);
 
-        // Sign up form submission
-        signupForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const email = signupEmail.value;
-            const password = signupPassword.value;
+        // Optionally, you can redirect the user to another page after successful login
+        // window.location.href = '/dashboard.html'; // Replace with the actual URL
+    } catch (error) {
+        console.error('Login failed:', error);
+        // Handle login error (e.g., display an error message to the user)
+    }
+});
 
-            // Perform sign up logic here using Netlify Identity
-            // You can use netlifyIdentity.signup({ email, password }) to sign up the user
-        });
+// Sign-up form submission
+signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = signupEmail.value;
+    const password = signupPassword.value;
+
+    try {
+        // Perform sign-up logic here using Netlify Identity
+        const user = await netlifyIdentity.signup({ email, password });
+        console.log('User signed up:', user);
+
+        // Optionally, you can log the user in automatically after sign-up
+        await netlifyIdentity.login({ email, password });
+
+        // Optionally, you can redirect the user to another page after successful sign-up and login
+        // window.location.href = '/dashboard.html'; // Replace with the actual URL
+    } catch (error) {
+        console.error('Sign-up failed:', error);
+        // Handle sign-up error (e.g., display an error message to the user)
+    }
+});
+
     </script>
 </body>
 </html>
