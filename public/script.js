@@ -57,7 +57,7 @@ function appendMessage(sender, message) {
 }
 
 async function getChatbotResponse(message, history) {
-    const apiKey = "YOUR_API_KEY"; // Replace with your actual API key
+    const apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODBiYTM3NzUtY2UxYi00NTI3LWIwMjktNWQxOTIyZmEyYTg5IiwidHlwZSI6ImFwaV90b2tlbiJ9.8nm8aXSAu_BLqfaf62tezxT8tNlG0NDHpTeAyXzKIXw"; // Replace with your actual API key
     const apiUrl = "https://api.edenai.run/v2/text/chat";
 
     const requestData = {
