@@ -3,129 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login or Join</title>
-    <!-- Include the Netlify Identity script -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <title>Nkanyezi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Include the Netlify Identity widget script -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
         /* Custom CSS styles */
-        body {
-            padding: 20px;
+        #chat {
+            margin-top: 20px;
         }
 
-        .form-container {
-            background-color: #f2f2f2;
-            padding: 20px;
+        .user-message {
+            background-color: #e0e0e0;
+            margin: 10px;
+            padding: 10px;
             border-radius: 5px;
+            clear: both;
+            float: left;
+            max-width: 70%;
         }
 
-        .btn-container {
-            display: flex;
-            justify-content: space-between;
+        .assistant-message {
+            background-color: #4caf50;
+            color: white;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            clear: both;
+            float: right;
+            max-width: 70%;
         }
 
-        .btn-container button {
-            margin: 5px;
+        /* Style for the separator */
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #ccc; /* Color of the separator line */
+            margin: 5px 0; /* Adjust the margin to control the spacing */
         }
     </style>
-</head>
-<body>
-    <h1 class="text-center">Login or Join</h1>
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3 form-container">
-                <!-- Login Form -->
-                <form id="loginForm">
-                    <h2>Login</h2>
-                    <div class="mb-3">
-                        <label for="loginEmail" class="form-label">Email:</label>
-                        <input type="email" id="loginEmail" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="loginPassword" class="form-label">Password:</label>
-                        <input type="password" id="loginPassword" class="form-control" required>
-                    </div>
-                    <div class="btn-container">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        <button id="signupButton" class="btn btn-secondary">Join</button>
-                    </div>
-                </form>
-
-                <!-- Sign Up Form -->
-                <form id="signupForm" style="display: none;">
-                    <h2>Sign Up</h2>
-                    <div class="mb-3">
-                        <label for="signupEmail" class="form-label">Email:</label>
-                        <input type="email" id="signupEmail" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="signupPassword" class="form-label">Password:</label>
-                        <input type="password" id="signupPassword" class="form-control" required>
-                    </div>
-                    <div class="btn-container">
-                        <button type="submit" class="btn btn-primary">Join</button>
-                        <button id="loginButton" class="btn btn-secondary">Login</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Initialize Netlify Identity
         const netlifyIdentity = window.netlifyIdentity;
 
-        netlifyIdentity.init();
+        // Check the login state
+        const user = netlifyIdentity.currentUser();
 
-        // Login form
-        const loginForm = document.getElementById("loginForm");
-        const loginEmail = document.getElementById("loginEmail");
-        const loginPassword = document.getElementById("loginPassword");
-
-        // Sign up form
-        const signupForm = document.getElementById("signupForm");
-        const signupEmail = document.getElementById("signupEmail");
-        const signupPassword = document.getElementById("signupPassword");
-
-        // Buttons to toggle forms
-        const loginButton = document.getElementById("loginButton");
-        const signupButton = document.getElementById("signupButton");
-
-        // Toggle to the login form by default
-        loginForm.style.display = "block";
-        signupForm.style.display = "none";
-
-        // Event listeners for toggling between login and signup forms
-        loginButton.addEventListener("click", () => {
-            loginForm.style.display = "block";
-            signupForm.style.display = "none";
-        });
-
-        signupButton.addEventListener("click", () => {
-            loginForm.style.display = "none";
-            signupForm.style.display = "block";
-        });
-
-        // Login form submission
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const email = loginEmail.value;
-            const password = loginPassword.value;
-
-            // Perform login logic here using Netlify Identity
-            // You can use netlifyIdentity.login({ email, password }) to log in the user
-        });
-
-        // Sign up form submission
-        signupForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const email = signupEmail.value;
-            const password = signupPassword.value;
-
-            // Perform sign up logic here using Netlify Identity
-            // You can use netlifyIdentity.signup({ email, password }) to sign up the user
-        });
+        if (!user) {
+            // User is not logged in
+            // Redirect to the login page
+            window.location.href = '/login.html'; // Replace with the actual login page URL
+        }
     </script>
+</head>
+<body>
+    <h1 class="text-center">Nkanyezi By Skywalkingzulu</h1>
+    <div class="container">
+        <div id="chat" class="col-md-6 offset-md-3">
+            <!-- The chat messages and separators will be dynamically generated here -->
+        </div>
+        <input type="text" id="userInput" class="form-control" placeholder="Type your message...">
+        <button id="sendButton" class="btn btn-primary">Send</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
