@@ -29,6 +29,7 @@
         }
     </style>
        <script>
+   document.addEventListener("DOMContentLoaded", function () {
     // Initialize Netlify Identity
     const netlifyIdentity = window.netlifyIdentity;
     
@@ -103,6 +104,7 @@
             // Handle sign-up error (e.g., display an error message to the user)
         }
     });
+    });
 </script>
 </head>
 <body>
@@ -149,6 +151,6 @@
     </div>
 
 
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async></script>
 </body>
 </html>
