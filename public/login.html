@@ -28,51 +28,7 @@
             margin: 5px;
         }
     </style>
-</head>
-<body>
-    <h1 class="text-center">Login or Join</h1>
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3 form-container">
-                <!-- Login Form -->
-                <form id="loginForm">
-                    <h2>Login</h2>
-                    <div class="mb-3">
-                        <label for="loginEmail" class="form-label">Email:</label>
-                        <input type="email" id="loginEmail" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="loginPassword" class="form-label">Password:</label>
-                        <input type="password" id="loginPassword" class="form-control" required>
-                    </div>
-                    <div class="btn-container">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        <button id="signupButton" class="btn btn-secondary">Join</button>
-                    </div>
-                </form>
-
-                <!-- Sign Up Form -->
-                <form id="signupForm" style="display: none;">
-                    <h2>Sign Up</h2>
-                    <div class="mb-3">
-                        <label for="signupEmail" class="form-label">Email:</label>
-                        <input type="email" id="signupEmail" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="signupPassword" class="form-label">Password:</label>
-                        <input type="password" id="signupPassword" class="form-control" required>
-                    </div>
-                    <div class="btn-container">
-                        <button type="submit" class="btn btn-primary">Join</button>
-                        <button id="loginButton" class="btn btn-secondary">Login</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-   <script>
+       <script>
     // Initialize Netlify Identity
     const netlifyIdentity = window.netlifyIdentity;
     
@@ -148,6 +104,51 @@
         }
     });
 </script>
+</head>
+<body>
+    <h1 class="text-center">Login or Join</h1>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 form-container">
+                <!-- Login Form -->
+                <form id="loginForm">
+                    <h2>Login</h2>
+                    <div class="mb-3">
+                        <label for="loginEmail" class="form-label">Email:</label>
+                        <input type="email" id="loginEmail" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Password:</label>
+                        <input type="password" id="loginPassword" class="form-control" required>
+                    </div>
+                    <div class="btn-container">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button id="signupButton" class="btn btn-secondary">Join</button>
+                    </div>
+                </form>
+
+                <!-- Sign Up Form -->
+                <form id="signupForm" style="display: none;">
+                    <h2>Sign Up</h2>
+                    <div class="mb-3">
+                        <label for="signupEmail" class="form-label">Email:</label>
+                        <input type="email" id="signupEmail" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="signupPassword" class="form-label">Password:</label>
+                        <input type="password" id="signupPassword" class="form-control" required>
+                    </div>
+                    <div class="btn-container">
+                        <button type="submit" class="btn btn-primary">Join</button>
+                        <button id="loginButton" class="btn btn-secondary">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </body>
 </html>
