@@ -85,7 +85,7 @@ async function getChatbotResponse(message, history) {
         chatbot_global_action: "Act as an assistant",
         previous_history: history, // Pass the entire conversation history
         temperature: 0.0,
-        max_tokens: 650,
+        max_tokens: 990,
     };
 
     try {
