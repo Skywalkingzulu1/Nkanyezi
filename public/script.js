@@ -4,11 +4,20 @@ const sendButton = document.getElementById("sendButton");
 let conversationHistory = []; // Initialize conversation history
 let currentUsername = "";
 
+const maxHistoryLength = 10; // Define the maximum number of messages to retain in history
+
+
 sendButton.addEventListener("click", async () => {
     const userMessage = userInput.value;
     if (userMessage.trim() !== "") {
         // Append user message to the conversation history with "role" set to "user"
         conversationHistory.push({ role: "user", message: userMessage }); // Do not include the username here
+
+        // Limit the conversation history to the maximum length
+        if (conversationHistory.length > maxHistoryLength) {
+            conversationHistory.shift(); // Remove the oldest message
+        }
+
         userInput.value = "";
 
         // Call the chatbot API with the current conversation history
