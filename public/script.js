@@ -42,7 +42,7 @@ function saveConversationToRestDB(history) {
 
     // Create a modified array without the "username" property
     const historyWithoutUsername = history.map(({ role, message }) => ({
-        role,
+        role: getCookie("username"),
         message,
     }));
 
