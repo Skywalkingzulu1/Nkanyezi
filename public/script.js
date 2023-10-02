@@ -35,17 +35,15 @@ sendButton.addEventListener("click", async () => {
 });
 
 // Function to save the conversation history to restdb.io
+// Function to save the conversation history to restdb.io
 function saveConversationToRestDB(history) {
     const apiKey = "265a3cb410e1b1ace0303ec60467a38932fe2"; // Replace with your actual restdb.io API key
     const apiUrl = "https://nkanyezi-2737.restdb.io/rest/conversation"; // Adjust the URL as needed
 
-    // Get the username from the cookie
-    const username = getCookie("username");
-
-    // Add the username to each message in the conversation history
-    const historyWithUsername = history.map(message => ({
-        ...message,
-        username,
+    // Create a modified array without the "username" property
+    const historyWithoutUsername = history.map(({ role, message }) => ({
+        role,
+        message,
     }));
 
     // Send the conversation data to restdb.io using an AJAX POST request
@@ -55,7 +53,7 @@ function saveConversationToRestDB(history) {
             'Content-Type': 'application/json',
             'x-apikey': apiKey,
         },
-        body: JSON.stringify(historyWithUsername), // Send the entire conversation history with usernames
+        body: JSON.stringify(historyWithoutUsername), // Send the modified conversation history without usernames
     })
     .then(response => response.json())
     .then(newDocument => {
@@ -65,6 +63,7 @@ function saveConversationToRestDB(history) {
         console.error('Error creating document:', error);
     });
 }
+
 function appendMessage(sender, message) {
     const messageContainer = document.createElement("div"); // Create a container div
 
