@@ -1,0 +1,276 @@
+<html>
+
+<head>
+  <title>Nkanyezu payments</title>
+<script type="text/javascript">
+function checkForButton() {
+  const addToCartButton = document.querySelector('.shopify-buy__btn');
+
+  if (addToCartButton) {
+    addToCartButton.addEventListener('click', function () {
+      // Handle the button click event here
+      const booleanValue = true; // Set your Boolean value as needed
+      
+      // Send Data to RestDB
+      const url = 'https://nkanyezi-2737.restdb.io/rest/profile'; // Replace with your RestDB API endpoint
+      const apiKey = '265a3cb410e1b1ace0303ec60467a38932fe2'; // Replace with your RestDB API key
+
+      fetch(url, {
+        method: 'POST', // Use 'POST' to send data to your collection
+        headers: {
+          'Content-Type': 'application/json',
+          'x-apikey': apiKey, // Include your API key for authentication
+        },
+        body: JSON.stringify({ yourBooleanField: booleanValue }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log('Boolean value sent successfully to RestDB.');
+            // You can provide user feedback here if needed (e.g., display a success message)
+          } else {
+            console.error('Error sending Boolean value to RestDB:', response.status, response.statusText);
+            // You can handle and display the error to the user if needed
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          // You can handle and display the error to the user if needed
+        });
+    });
+
+    clearInterval(checkInterval); // Stop checking once the button is found
+  }
+}
+
+// Check for the button every 2 seconds (you can adjust the interval as needed)
+const checkInterval = setInterval(checkForButton, 2000);
+
+</script>
+</head>
+
+
+
+<body>
+  
+
+
+<div id='product-component-1696688687306'></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: '6ba7d4-2.myshopify.com',
+      storefrontAccessToken: 'a15390e29cd6ed9d263c42ed9a829e2e',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '7239445708853',
+        node: document.getElementById('product-component-1696688687306'),
+        moneyFormat: 'R%20%7B%7Bamount%7D%7D',
+        options: {
+  "product": {
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px"
+        }
+      },
+      "button": {
+        ":hover": {
+          "background-color": "#000000"
+        },
+        "background-color": "#000000",
+        ":focus": {
+          "background-color": "#000000"
+        }
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      },
+      "button": {
+        ":hover": {
+          "background-color": "#000000"
+        },
+        "background-color": "#000000",
+        ":focus": {
+          "background-color": "#000000"
+        }
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "option": {},
+  "cart": {
+    "styles": {
+      "button": {
+        ":hover": {
+          "background-color": "#000000"
+        },
+        "background-color": "#000000",
+        ":focus": {
+          "background-color": "#000000"
+        }
+      },
+      "title": {
+        "color": "#fcf1f1"
+      },
+      "header": {
+        "color": "#fcf1f1"
+      },
+      "lineItems": {
+        "color": "#fcf1f1"
+      },
+      "subtotalText": {
+        "color": "#fcf1f1"
+      },
+      "subtotal": {
+        "color": "#fcf1f1"
+      },
+      "notice": {
+        "color": "#fcf1f1"
+      },
+      "currency": {
+        "color": "#fcf1f1"
+      },
+      "close": {
+        "color": "#fcf1f1",
+        ":hover": {
+          "color": "#fcf1f1"
+        }
+      },
+      "empty": {
+        "color": "#fcf1f1"
+      },
+      "noteDescription": {
+        "color": "#fcf1f1"
+      },
+      "discountText": {
+        "color": "#fcf1f1"
+      },
+      "discountIcon": {
+        "fill": "#fcf1f1"
+      },
+      "discountAmount": {
+        "color": "#fcf1f1"
+      },
+      "cart": {
+        "background-color": "#161515"
+      },
+      "footer": {
+        "background-color": "#161515"
+      }
+    },
+    "text": {
+      "total": "Subtotal",
+      "notice": "Your monthly subscription expires in 30 Days. There may be a delay in acoount registration, so always try to use a new tab.",
+      "button": "Checkout"
+    },
+    "popup": false
+  },
+  "toggle": {
+    "styles": {
+      "toggle": {
+        "background-color": "#000000",
+        ":hover": {
+          "background-color": "#000000"
+        },
+        ":focus": {
+          "background-color": "#000000"
+        }
+      }
+    }
+  },
+  "lineItem": {
+    "styles": {
+      "variantTitle": {
+        "color": "#fcf1f1"
+      },
+      "title": {
+        "color": "#fcf1f1"
+      },
+      "price": {
+        "color": "#fcf1f1"
+      },
+      "fullPrice": {
+        "color": "#fcf1f1"
+      },
+      "discount": {
+        "color": "#fcf1f1"
+      },
+      "discountIcon": {
+        "fill": "#fcf1f1"
+      },
+      "quantity": {
+        "color": "#fcf1f1"
+      },
+      "quantityIncrement": {
+        "color": "#fcf1f1",
+        "border-color": "#fcf1f1"
+      },
+      "quantityDecrement": {
+        "color": "#fcf1f1",
+        "border-color": "#fcf1f1"
+      },
+      "quantityInput": {
+        "color": "#fcf1f1",
+        "border-color": "#fcf1f1"
+      }
+    }
+  }
+},
+      });
+    });
+  }
+})();
+/*]]>*/
+</script>
+</body>
+</html>
