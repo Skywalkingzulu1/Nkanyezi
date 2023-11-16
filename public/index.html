@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Nkanyezi</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+
+   </head>
+   <body>
+      <div class="chat">
+         <div class="sidebar">
+            <div class="search">
+               <input type="text" placeholder="search..">
+               <i class="fa fa-search"></i>
+            </div>
+            <div class="contacts"><!-- Change this from contacts to topics for easy future reading. -->
+               <ul>
+                  <li>
+                     <a href="">
+                        <img src="img/OIP.jpg" alt="Avatar" >
+                        <div class="contact"><!-- Change this from contact to topic for easy future reading. -->
+                           <div class="name">Images</div>
+                           <div class="message">Generate Pictures</div>
+                        </div>
+                     </a>
+                  </li>
+                   <li>
+                     <a href="">
+                        <img src="img/convo.jpg" alt="Avatar">
+                        <div class="contact"><!-- Change this from contact to topic for easy future reading. -->
+                           <div class="name">Your Documents</div>
+                           <div class="message">Generate text based on Ducuments</div>
+                        </div>
+                     </a>
+                  </li>
+
+
+                  <li class="active">
+                     <a href="">
+                        <img src="img/convo.jpg" alt="Avatar">
+                        <div class="contact"><!-- Change this from contact to topic for easy future reading. -->
+                           <div class="name">Text Conversations</div>
+                           <div class="message"></div>
+                        </div>
+                        
+                     </a>
+                  </li>
+                  <li>
+               
+               </ul>
+            </div>
+            <div id="table" hidden>
+               <h3> Conversation summarry</h3>
+               
+            </div>
+         </div>
+         <div class="content">
+            <div class="message-header">
+               <div class="user-info">
+                  <img src="img/convo.jpg">
+                  <div class="user">
+                     <div class="name">Nkanyezi</div>
+                     <div class="time">Welcome to Nkanyezi, your AI Assistant.</div>
+                  </div>
+               </div>
+               <div class="actions">
+                  <ul>
+                     <li>
+                        <a href="#">
+                        <i class="fa fa-info-circle"></i>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="#">
+                        <i class="fa fa-ellipsis-v"></i>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="message-content">
+              <!--Response will be added here.  -->
+            </div>
+            <div class="message-form">
+               <ul>
+                  <li class="image-btn">
+                     <button id="record" >
+                     <i><img src="img/audio.png" style=" background: #ff5722;
+                                                              width: 36px;
+                                                             height: 36px;
+                                                            display: flex;
+                                                        align-items: center;
+                                                    justify-content: center;
+                                                             cursor: pointer;
+                                                      border-radius: 50%;"> </i></button>
+                     
+                  </li>
+                  <li class="input">							
+                     <input type="text" placeholder="Your message">
+                  </li>
+                  <li class="image-btn">
+                     <button id="sendButton" >
+                     <i id="send"><img src="img/send.png" style=" background: #ff5722;
+                                                             width: 36px;
+                                                            height: 36px;
+                                                           display: flex;
+                                                       align-items: center;
+                                                   justify-content: center;
+                                                            cursor: pointer;
+                                                     border-radius: 50%;"> </i></button>
+                     
+                  </li>
+                  <li class="image-btn">
+                     <button id="img" >
+                     <i><img src="img/img.png" style=" background: #ff5722;
+                                                            width: 36px;
+                                                           height: 36px;
+                                                          display: flex;
+                                                      align-items: center;
+                                                  justify-content: center;
+                                                           cursor: pointer;
+                                                    border-radius: 50%;"> </i>
+                                                 </button>
+                     
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+
+
+   <script src="app2.js"></script>
+   
+   </body>
+</html>
