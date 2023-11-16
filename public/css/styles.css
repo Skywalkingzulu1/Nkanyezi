@@ -1,0 +1,58 @@
+/* Your existing CSS styles remain here */
+
+/* Sidebar */
+.app .sidebar {
+   width: 250px;
+   min-width: 250px;
+   background-color: #f5f5f5;
+   display: flex;
+   flex-direction: column;
+}
+
+.app .sidebar .topics {
+   overflow: auto;
+}
+
+.app .sidebar .topics ul li {
+   padding: 15px;
+   border-bottom: 1px solid #ddd;
+}
+
+.app .sidebar .topics ul li a {
+   display: block;
+   font-size: 16px;
+   font-weight: 500;
+   color: #222222;
+   text-decoration: none;
+}
+
+.app .sidebar .topics ul li.active a {
+   background: #ffffff;
+   color: #222222;
+}
+
+/* Header */
+.app .content .header {
+   height: 50px;
+   min-height: 50px;
+   border-bottom: 1px solid #ddd;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 15px;
+}
+
+.app .content .header .topic {
+   font-size: 18px;
+   font-weight: 500;
+   color: #222222;
+}
+
+.app .content .header .actions {
+   /* Add styles for header actions or buttons here */
+}
+
+/* Chat */
+.app .content .chat {
+   /* Your existing styles for chat content */
+}
